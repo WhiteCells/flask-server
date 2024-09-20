@@ -42,15 +42,12 @@ def login_post():
     s_code = session.get("code", None)
     session["code"] = None
 
-    # todo 暂时关闭验证码的检验
-    # if not all([code, s_code]):
-    #     return fail_api(msg="参数错误")
+    if not all([code, s_code]):
+        return fail_api(msg="参数错误")
 
-    # todo 暂时关闭验证码的检验
-    # if code != s_code:
-    #     return fail_api(msg="验证码错误")
+    if code != s_code:
+        return fail_api(msg="验证码错误")
     user = User.query.filter_by(username=username).first()
-    # User.query.filter_by(username=username).all() list
 
     if not user:
         return fail_api(msg="不存在的用户")
@@ -93,3 +90,9 @@ def logout():
     logout_user()
     session.pop('permissions')
     return success_api(msg="注销成功")
+
+
+@bp.post('/api/receive')
+def api_res():
+    print("api_res")
+    return success_api(msg="请求成功")

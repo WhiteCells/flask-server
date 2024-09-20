@@ -22,7 +22,8 @@ def index():
 @authorize('system:excel:main')
 def table():
     csvs = Excel.query.filter(Excel.create_by == current_user.username).order_by(db.desc(Excel.create_time)).layui_paginate()
-    return table_api(data=ExcelSchema(many=True).dump(csvs), count=csvs.total)
+    data = ExcelSchema(many=True).dump(csvs)
+    return table_api(data=data, count=csvs.total)
 
 
 @bp.get('/upload')
@@ -65,20 +66,13 @@ def template():
     return upload_curd.download_template()
 
 
-@bp.post('/api/upload/<int:id>')
-@authorize('system:excel:api')
+@bp.post('/upload/upload/<int:id>')
+@authorize('system:excel:upload')
 def api_upload(id):
-    return upload_curd.api_upload_excel_by_id(id)
+    return upload_curd.upload_excel_by_id(id)
 
 
 @bp.post('/api/receive')
-@authorize('system:excel:api')
 def api_receive():
-    json_data = request.get_json()
-    print(json_data)
-    try:
-        print('====== receive')
-        return upload_curd.api_receive_json()
-    except Exception as e:
-        print(e)
-        return fail_api()
+    print('===> api')
+    return upload_curd.api_receive_json()

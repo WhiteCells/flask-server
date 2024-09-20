@@ -1,4 +1,3 @@
-# from openpyxl import load_workbook
 import xlrd
 import openpyxl
 
@@ -33,5 +32,13 @@ def read_excel_file(filename):
 
 if __name__ == "__main__":
     # filename = "static/upload/地址修复后模板.xls"
-    filename = 'static/upload/test.xlsx'
-    read_excel_file(filename)
+    # filename = 'static/upload/test.xlsx'
+    # read_excel_file(filename)
+
+    json = {
+        '1': 1,
+        '2': 2
+    }
+
+    json['1'] = 2
+    print(json)

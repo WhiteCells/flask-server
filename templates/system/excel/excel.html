@@ -22,12 +22,12 @@
                 新增表格
             </button>
         {% endif %}
-        {% if authorize("system:excel:delete") %}
+        {# {% if authorize("system:excel:delete") %}
             <button class="pear-btn pear-btn-sm" lay-event="batchRemove">
                 <i class="layui-icon layui-icon-delete"></i>
                 删除表格
             </button>
-        {% endif %}
+        {% endif %} #}
         {% if authorize("system:excel:template") %}
             <button class="pear-btn pear-btn-sm" lay-event="template">
                 <i class="layui-icon layui-icon-download-circle"></i>
@@ -49,14 +49,21 @@
             <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="download"><i
                     class="layui-icon layui-icon-download-circle"></i></button>
         {% endif %}
-        {% if authorize("system:excel:api") %}
+        {% if authorize("system:excel:upload") %}
             <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="upload"><i
                     class="layui-icon layui-icon-upload-circle"></i></button>
         {% endif %}
     </script>
 
     <script type="text/html" id="repair_status">
-        {{'{{d.repair_status}'}}}
+        {{ '{{# if(d.repair_status === `0`){ }}' }}
+            未修复
+        {{ '{{# } else if(d.repair_status === `1`) { }}' }}
+            修复中
+        {{ '{{# } else { }}' }}
+            已修复
+        {{ '{{# } }}' }}
+
     </script>
 
     <script type="text/html" id="file-uploadTime">
@@ -227,7 +234,7 @@
             window.upload = function (obj) {
                 let id = obj.data['id'];
                 $.ajax({
-                    url: `api/upload/${id}`,
+                    url: `upload/upload/${id}`,
                     data: { id: obj.data['id'] },
                     dataType: 'json',
                     type: 'POST',
@@ -237,6 +244,7 @@
                                 icon: 1,
                                 time: 1000
                             });
+                            window.refresh();
                         } else {
                             layer.msg(res.msg, {
                                 icon: 2,
