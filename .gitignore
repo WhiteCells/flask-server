@@ -124,7 +124,10 @@ migrations/
 *.db
 
 # 文件上传
-# static/upload/
+static/upload/**/*.xlsx
+static/upload/**/*.xls
+static/upload/**/*.csv
+!static/upload/template/template.xlsx
 
 # flask session
 flask_session/

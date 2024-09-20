@@ -15,26 +15,6 @@ REPAIR_STATUS = {
 # id 前缀
 ID_PREFIX = 'flask_server_'
 
-# 调用 api 的 json 数据
-payload = {
-    'entity_no': 0,  # 客户
-    'entrust_id': "",  # 委托方Id  # 必填
-    'task_id': '',  # 任务Id  # 必填
-    'begin_time': "委案开始时间",
-    'returnUrl': "http://www.jhqtj.com:8088/hcls0/customerTask/returnAddressData",  # 数据返回的平台地址接口  # 必填
-    'customer_info': [
-        {
-            'customer_id': "客户号",  # 必填
-            'homeAddress': "家庭地址",  # 必填
-            'beginTime': "委案开始时间",  # 必填
-            'liveAddress': "居住地址",  # 必填
-            'user_identification': "身份证",  # 必填
-            'address1': "其他地址1",  # 未修复可不传值
-            'address2': "其他地址2",  # 未修复可不传值
-        }
-    ]
-}
-
 class BaseConfig:
     SUPERADMIN = 'admin'
 
@@ -72,7 +52,7 @@ class BaseConfig:
     # 上传的数据修复地址
     REPAIR_API_URL = 'http://192.168.10.125:8081/address'
     # 回调至服务器地址
-    RETURN_URL = 'http://192.168.3.233:8000/api/receive'
+    RETURN_URL = 'http://172.16.20.232:8000/system/excel/api/receive'
 
     # JSON配置
     JSON_AS_ASCII = False
@@ -90,7 +70,7 @@ class BaseConfig:
     # SQLALCHEMY_DATABASE_URI = 'sqlite:///../pear.db'
     # SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{MYSQL_USERNAME}:{urlquote(MYSQL_PASSWORD)}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}?charset=utf8mb4"
     # SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://root:10101@localhost:3306/PearAdmin?charset=utf8mb4"
-    SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://root:10101@localhost:3306/PearAdmin?charset=utf8mb4"
+    SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://repair:AEaf35TtYvYmNjyv@192.168.10.59:3306/address-repair-mater"
 
     # 默认日志等级
     LOG_LEVEL = logging.WARN
