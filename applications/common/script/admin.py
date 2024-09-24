@@ -12,11 +12,13 @@ userdata = [
     User(
         id=1,
         username='admin',
-        password_hash='pbkdf2:sha256:150000$raM7mDSr$58fe069c3eac01531fc8af85e6fc200655dd2588090530084d182e6ec9d52c85',
+        # password_hash='pbkdf2:sha256:150000$raM7mDSr$58fe069c3eac01531fc8af85e6fc200655dd2588090530084d182e6ec9d52c85',
+        password_hash='pbkdf2:sha256:600000$OUq5KyjwNmWBVrZL$8bd39d09bf40e8b0f76a340fa3488bce1896b988d1a440a3afd9e75fa105a059',
+        # pbkdf2:sha256:600000$OUq5KyjwNmWBVrZL$8bd39d09bf40e8b0f76a340fa3488bce1896b988d1a440a3afd9e75fa105a059
         create_at=now_time,
         enable=1,
         realname='超级管理',
-        remark='要是不能把握时机，就要终身蹭蹬，一事无成！',
+        remark='none',
         avatar='/static/system/admin/images/avatar.jpg',
         dept_id=1,
     )
@@ -45,27 +47,14 @@ deptdata = [
     Dept(
         id=1,
         parent_id=0,
-        dept_name='总公司',
+        dept_name='公司',
         sort=1,
-        leader='就眠仪式',
+        leader='leader',
         phone='12312345679',
-        email='123qq.com',
+        email='xxx@xxx.com',
         status=1,
-        remark='这是总公司',
+        remark='公司',
         create_at=now_time
-    ),
-    Dept(
-        id=4,
-        parent_id=1,
-        dept_name='济南分公司',
-        sort=2,
-        leader='就眠仪式',
-        phone='12312345679',
-        email='123qq.com',
-        status=1,
-        remark='这是济南',
-        create_at=now_time
-
     )
 ]
 powerdata = [

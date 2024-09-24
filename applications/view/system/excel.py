@@ -21,7 +21,11 @@ def index():
 @bp.get('/table')
 @authorize('system:excel:main')
 def table():
-    csvs = Excel.query.filter(Excel.create_by == current_user.username).order_by(db.desc(Excel.create_time)).layui_paginate()
+    if current_user.username == 'admin':
+        csvs = Excel.query.order_by(db.desc(Excel.create_time)).layui_paginate()
+    else:
+        csvs = Excel.query.filter(Excel.create_by == current_user.username).order_by(db.desc(Excel.create_time)).layui_paginate()
+
     data = ExcelSchema(many=True).dump(csvs)
     return table_api(data=data, count=csvs.total)
 

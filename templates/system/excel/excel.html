@@ -70,6 +70,10 @@
         {{ '  {{layui.util.toDateString(d.create_time,  "yyyy-MM-dd HH:mm:ss")}' |safe }}}
     </script>
 
+    <script type="text/html" id="file-creater">
+        {{ '  {{d.create_by}' |safe }}}
+    </script>
+
     <script>
         layui.use(['table', 'form', 'jquery'], function () {
             let table = layui.table;
@@ -108,6 +112,14 @@
                         title: '创建时间',
                         sort: true,
                         templet: '#file-uploadTime',
+                        unresize: true,
+                        align: 'center'
+                    },
+                    {
+                        field: 'creater',
+                        title: '创建者',
+                        sort: true,
+                        templet: '#file-creater',
                         unresize: true,
                         align: 'center'
                     },
