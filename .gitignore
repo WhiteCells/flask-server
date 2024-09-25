@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -262,5 +260,4 @@ static/upload/**.xlsx
 !static/upload/template/template.xlsx
 
 # flask session
->>>>>>> 4ed44da (modified format)
 flask_session/
